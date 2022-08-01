@@ -1,6 +1,4 @@
 
-
-
 create database CabBooking
 
 use CabBooking
@@ -17,8 +15,7 @@ ToLocation int foreign key references Location(ID),
 Distanceinkm float)
 
 create table Cab(
-Id int identity,
-CabId AS 'C00' + CAST(Id as varchar(20)) persisted primary key,
+CabId  int primary key,
 Cabname varchar(20),
 Cabtype varchar(20),
 fareperkm float,
@@ -37,14 +34,14 @@ mobile bigint primary key,
 Username varchar(20),
 Password varchar(20),
 licenseno varchar(40),
-cabid varchar(23) foreign key references Cab(CabId),
+cabid int foreign key references Cab(CabId),
 Isapproved bit,
 )
 
 create table Booking(
 Bookingid int primary key,
 mobileno bigint foreign key references Customer(Mobile),
-cabid varchar(23) foreign key references Cab(CabId),
+cabid int foreign key references Cab(CabId),
 fare float,
 Gst float,
 DistanceId int foreign key references Distance(DistanceId),
