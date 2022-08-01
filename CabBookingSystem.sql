@@ -1,3 +1,6 @@
+
+
+
 create database CabBooking
 
 use CabBooking
@@ -30,7 +33,7 @@ Password varchar(20),
 Email varchar(20))
 
 create table Driver(
-mobile int primary key,
+mobile bigint primary key,
 Username varchar(20),
 Password varchar(20),
 licenseno varchar(40),
@@ -53,6 +56,8 @@ Rating float)
 Create Table Admin(
 Username varchar(50) primary key,
 Password varchar(25) not null)
+
+
 
 
 
