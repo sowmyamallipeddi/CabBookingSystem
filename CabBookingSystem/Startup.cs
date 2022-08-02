@@ -1,4 +1,7 @@
 using CabBookingSystem.Models;
+using CabBookingSystem.Repository;
+using CabBookingSystem.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +32,21 @@ namespace CabBookingSystem
             services.AddDbContext<CabBookingContext>(option => option.UseSqlServer
                (Configuration.GetConnectionString("DbCon"))
                );
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICabRepository, CabRepository>();
+            services.AddScoped<ICabService, CabService>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+              .AddCookie(options =>
+              {
+                  options.Cookie.Name = "MyCookie";
+                  options.LoginPath = "/User/login";
+                  options.SlidingExpiration = false;
+              });
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +66,8 @@ namespace CabBookingSystem
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseSession();
 
             app.UseAuthorization();
 

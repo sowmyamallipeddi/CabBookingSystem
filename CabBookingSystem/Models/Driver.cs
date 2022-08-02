@@ -9,12 +9,13 @@ namespace CabBookingSystem.Models
 {
     public partial class Driver
     {
-        public int Mobile { get; set; }
+        public long Mobile { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Licenseno { get; set; }
-        public string Cabid { get; set; }
+        public int? Cabid { get; set; }
         public bool? Isapproved { get; set; }
+        public bool? IsDeleted { get; set; }
 
         public virtual Cab Cab { get; set; }
     }

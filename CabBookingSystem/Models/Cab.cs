@@ -15,13 +15,14 @@ namespace CabBookingSystem.Models
             Driver = new HashSet<Driver>();
         }
 
-        public int Id { get; set; }
-        public string CabId { get; set; }
+        public int CabId { get; set; }
         public string Cabname { get; set; }
         public string Cabtype { get; set; }
         public double? Fareperkm { get; set; }
         public int? CurrentLocation { get; set; }
         public bool? Isavailable { get; set; }
+        public bool? IsDeleted { get; set; }
+        public string CabNo { get; set; }
 
         public virtual Location CurrentLocationNavigation { get; set; }
         public virtual ICollection<Booking> Booking { get; set; }

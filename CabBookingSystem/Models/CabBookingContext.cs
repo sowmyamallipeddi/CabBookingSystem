@@ -41,7 +41,7 @@ namespace CabBookingSystem.Models
             modelBuilder.Entity<Admin>(entity =>
             {
                 entity.HasKey(e => e.Username)
-                    .HasName("PK__Admin__536C85E5110EFF44");
+                    .HasName("PK__Admin__536C85E583EC279A");
 
                 entity.Property(e => e.Username)
                     .HasMaxLength(50)
@@ -57,10 +57,9 @@ namespace CabBookingSystem.Models
             {
                 entity.Property(e => e.Bookingid).ValueGeneratedNever();
 
-                entity.Property(e => e.Cabid)
-                    .HasColumnName("cabid")
-                    .HasMaxLength(23)
-                    .IsUnicode(false);
+                entity.Property(e => e.BookingDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Cabid).HasColumnName("cabid");
 
                 entity.Property(e => e.Fare).HasColumnName("fare");
 
@@ -75,28 +74,26 @@ namespace CabBookingSystem.Models
                 entity.HasOne(d => d.Cab)
                     .WithMany(p => p.Booking)
                     .HasForeignKey(d => d.Cabid)
-                    .HasConstraintName("FK__Booking__cabid__1ED998B2");
+                    .HasConstraintName("FK__Booking__cabid__25869641");
 
                 entity.HasOne(d => d.Distance)
                     .WithMany(p => p.Booking)
                     .HasForeignKey(d => d.DistanceId)
-                    .HasConstraintName("FK__Booking__Distanc__1FCDBCEB");
+                    .HasConstraintName("FK__Booking__Distanc__267ABA7A");
 
                 entity.HasOne(d => d.MobilenoNavigation)
                     .WithMany(p => p.Booking)
                     .HasForeignKey(d => d.Mobileno)
-                    .HasConstraintName("FK__Booking__mobilen__1DE57479");
+                    .HasConstraintName("FK__Booking__mobilen__24927208");
             });
 
             modelBuilder.Entity<Cab>(entity =>
             {
-                entity.HasKey(e => e.CabId)
-                    .HasName("PK__Cab__66AC416D84BEC9CD");
+                entity.Property(e => e.CabId).ValueGeneratedNever();
 
-                entity.Property(e => e.CabId)
-                    .HasMaxLength(23)
-                    .IsUnicode(false)
-                    .HasComputedColumnSql("('C00'+CONVERT([varchar](20),[Id]))");
+                entity.Property(e => e.CabNo)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Cabname)
                     .HasMaxLength(20)
@@ -108,7 +105,7 @@ namespace CabBookingSystem.Models
 
                 entity.Property(e => e.Fareperkm).HasColumnName("fareperkm");
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
 
                 entity.HasOne(d => d.CurrentLocationNavigation)
                     .WithMany(p => p.Cab)
@@ -119,7 +116,7 @@ namespace CabBookingSystem.Models
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.Mobile)
-                    .HasName("PK__Customer__6FAE0783999F6589");
+                    .HasName("PK__Customer__6FAE0783610D21B7");
 
                 entity.Property(e => e.Mobile).ValueGeneratedNever();
 
@@ -152,16 +149,15 @@ namespace CabBookingSystem.Models
             modelBuilder.Entity<Driver>(entity =>
             {
                 entity.HasKey(e => e.Mobile)
-                    .HasName("PK__Driver__A32E2E1D944530E1");
+                    .HasName("PK__Driver__A32E2E1D92A8BA26");
 
                 entity.Property(e => e.Mobile)
                     .HasColumnName("mobile")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Cabid)
-                    .HasColumnName("cabid")
-                    .HasMaxLength(23)
-                    .IsUnicode(false);
+                entity.Property(e => e.Cabid).HasColumnName("cabid");
+
+                entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
 
                 entity.Property(e => e.Licenseno)
                     .HasColumnName("licenseno")
@@ -179,7 +175,7 @@ namespace CabBookingSystem.Models
                 entity.HasOne(d => d.Cab)
                     .WithMany(p => p.Driver)
                     .HasForeignKey(d => d.Cabid)
-                    .HasConstraintName("FK__Driver__cabid__1B0907CE");
+                    .HasConstraintName("FK__Driver__cabid__21B6055D");
             });
 
             modelBuilder.Entity<Location>(entity =>

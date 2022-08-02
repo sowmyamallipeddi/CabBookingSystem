@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CabBookingSystem.Models.Cab>
+
+@{
+    ViewData["Title"] = "GetDistance";
+}
+
+<h1>GetDistance</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cabname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cabtype)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fareperkm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Isavailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentLocationNavigation)
+            </th>
+            <th>Total Fare</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td> <img src="~/Images/24744_edited.jpg" height="200" width="200"/></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cabname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cabtype)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fareperkm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isavailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentLocationNavigation.Id)
+            </td>
+                @{
+                    var h = Convert.ToDouble(@ViewBag.distance);
+                    var f = Convert.ToDouble(@item.Fareperkm);
+                    var res = h * f;
+
+                }
+            <td>@res</td>
+            
+            <td>
+                <a asp-action="Book" asp-route-id="@item.CabId">Book</a> |
+              
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

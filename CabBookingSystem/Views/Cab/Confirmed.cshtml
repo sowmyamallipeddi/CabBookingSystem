@@ -1,0 +1,19 @@
+﻿@model CabBookingSystem.Models.ViewModel1
+@{
+    ViewData["Title"] = "Confirmed";
+}
+
+<h1>Confirmed</h1>
+<p>Your booking is confirmed</p>
+<table>
+    <tr>
+        <td>Booking ID </td><td>@Html.DisplayFor(item=>item.BookingId)</td>
+        <td>OTP</td><td>@Html.DisplayFor(item=>item.OTP)</td>
+        <td>Driver Number</td><td>@Html.DisplayFor(item=>item.Drivernumber)</td>
+        <td>Driver Name</td><td>@Html.DisplayFor(item=>item.DriverName)</td>
+        <td>Cab Number</td><td>@Html.DisplayFor(item=>item.CabNo)</td>
+    </tr>
+   
+</table>
+
+

@@ -1,0 +1,17 @@
+﻿@model CabBookingSystem.Models.Distance
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form asp-action="GetDistance">
+  From Location  <select asp-for="FromLocation" asp-items="@ViewBag.data">
+        
+    </select>
+
+   To Location  <select asp-for="ToLocation" asp-items="@ViewBag.data">
+        
+    </select>
+    <input type="submit" />
+</form>
+

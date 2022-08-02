@@ -11,7 +11,7 @@ namespace CabBookingSystem.Models
     {
         public int Bookingid { get; set; }
         public long? Mobileno { get; set; }
-        public string Cabid { get; set; }
+        public int? Cabid { get; set; }
         public double? Fare { get; set; }
         public double? Gst { get; set; }
         public int? DistanceId { get; set; }
@@ -19,6 +19,7 @@ namespace CabBookingSystem.Models
         public decimal? TotalFare { get; set; }
         public string Status { get; set; }
         public double? Rating { get; set; }
+        public DateTime? BookingDate { get; set; }
 
         public virtual Cab Cab { get; set; }
         public virtual Distance Distance { get; set; }
