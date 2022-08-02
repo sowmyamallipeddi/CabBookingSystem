@@ -55,6 +55,14 @@ Username varchar(50) primary key,
 Password varchar(25) not null)
 
 
+alter table Cab add isDeleted bit
+
+alter table Cab add CabNo varchar(15)
+
+alter table Driver add isDeleted bit
+
+alter table Booking add BookingDate DateTime
+
 
 
 
