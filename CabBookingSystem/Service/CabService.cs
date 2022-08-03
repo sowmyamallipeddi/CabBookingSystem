@@ -45,8 +45,11 @@ namespace CabBookingSystem.Service
         {
             return _irepo.GetBooking(id);
         }
-       
 
-
+        public IEnumerable<ViewModel2> GetBookinghistory(long mobileno)
+        {
+            return _irepo.GetBookinghistory(mobileno);
+           // throw new System.NotImplementedException();
+        }
     }
 }

@@ -70,5 +70,32 @@ namespace CabBookingSystem.Repository
         }
 
        
+
+        public IEnumerable<ViewModel2> GetBookinghistory(long mobileno)
+        {
+            var result = from b in _context.Booking
+                         join d in _context.Distance on b.DistanceId equals d.DistanceId
+                         join c in _context.Cab on b.Cabid equals c.CabId
+                         join dr in _context.Driver on b.Cabid equals dr.Cabid
+                         join l in _context.Location on d.FromLocation equals l.Id
+                         join l1 in _context.Location on d.ToLocation equals l1.Id
+                         where b.Mobileno == mobileno
+                         select new ViewModel2
+                         {
+                             FromLocation = l.Name,
+                             ToLocation = l1.Name,
+                             BookingId = b.Bookingid,
+                             CabNo = c.CabNo,
+                             DriverName = dr.Username,
+                             Fareperkm = c.Fareperkm,
+                             Gst = b.Gst,
+                             TotalFare = b.TotalFare,
+                             BookingDate = b.BookingDate
+
+
+                         };
+            return result;
+
+        }
     }
 }

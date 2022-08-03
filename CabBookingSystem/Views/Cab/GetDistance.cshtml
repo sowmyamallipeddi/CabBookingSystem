@@ -3,64 +3,93 @@
 @{
     ViewData["Title"] = "GetDistance";
 }
+<style>
+    h1{
+        font-family:'Times New Roman', Times, serif;
+        font-weight:bold;
+        font-size:40px;
+        text-align:center;
+        color:darkorchid;
+       
+    }
+   #details{
+       font-size:18px;
+       font-weight:bold;
+   }
+   #table{
+       font-size:18px;
+       font-weight:bold;
+   }
+</style>
 
-<h1>GetDistance</h1>
+<h1>Available Cabs</h1>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+</p>*@
+<table class="table" id="table">
     <thead>
         <tr>
             <th></th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Cabname)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Cabtype)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Fareperkm)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Isavailable)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.CurrentLocationNavigation)
-            </th>
-            <th>Total Fare</th>
+            </th>*@
+           @* <th>Total Fare</th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td> <img src="~/Images/24744_edited.jpg" height="200" width="200"/></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cabname)
-            </td>
+            @*<td> <img src="~/Images/@item.Cabtype" height="200" width="200"/></td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Cabtype)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fareperkm)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Isavailable)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrentLocationNavigation.Id)
-            </td>
+                @{
+                   // var path = "~/images/" + item.Cabtype + ".jpg";
+                    var path1 = @item.Cabtype + ".png";
+                }<br />
+                <img src="~/Images/@path1" width="400" height="200"  />
+                @*@Html.DisplayNameFor(model=> model.CabId):
+                @Html.DisplayFor(modelItem=> item.CabId)<br />
+
+                @Html.DisplayNameFor(model=>model.Cabname):
+                @Html.DisplayFor(modelItem=>item.Cabname)<br />*@
+                </td>
+            <td id="details">
+                @*@Html.DisplayFor(modelItem => item.Cabname)
+            
+                @Html.DisplayFor(modelItem => item.Cabtype)*@
+                @Html.DisplayNameFor(model=> model.CabId):
+                @Html.DisplayFor(modelItem=> item.CabId)<br />
+                @Html.DisplayNameFor(model=>model.Cabname):
+                @Html.DisplayFor(modelItem=>item.Cabname)<br />
+                @Html.DisplayNameFor(model => model.Fareperkm):
+                @Html.DisplayFor(modelItem => item.Fareperkm)<br />
+                @Html.DisplayNameFor(model => model.Isavailable):
+                @Html.DisplayFor(modelItem => item.Isavailable)<br />
                 @{
                     var h = Convert.ToDouble(@ViewBag.distance);
                     var f = Convert.ToDouble(@item.Fareperkm);
                     var res = h * f;
 
                 }
-            <td>@res</td>
+                Total Fare: @res
+                </td>
             
             <td>
-                <a asp-action="Book" asp-route-id="@item.CabId">Book</a> |
+                <a asp-action="Book" asp-route-id="@item.CabId">Book</a> 
               
             </td>
         </tr>

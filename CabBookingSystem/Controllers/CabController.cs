@@ -60,9 +60,16 @@ namespace CabBookingSystem.Controllers
             b.Fare = cab.Fareperkm;
             b.Gst = 18;
             b.TotalFare =(decimal)(b.Fare*distance.Distanceinkm)+ (decimal)(0.18 *(b.Fare * distance.Distanceinkm));
+            
             _cs.bookCab(b);
             
             return RedirectToAction("Confirmed", "Cab", new {bookingid=b.Bookingid});
+        }
+
+        public IActionResult GetBookingHistory()
+        {
+            var res = _cs.GetBookinghistory(long.Parse(HttpContext.Session.GetString("mobile")));
+            return View(res);
         }
 
     }

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CabBookingSystem.Models.ViewModel2>
+@{
+    ViewData["Title"] = "GetBookingHistory";
+}
+<style>
+    h1{
+        font-family:'Times New Roman', Times, serif;
+        color:darkmagenta;
+        font-size:40px;
+
+    }
+</style>
+
+<h1>GetBookingHistory</h1>
+
+<table class="table">
+    <tr>
+        <td>From Location</td>
+        <td>To Location</td>
+        <td>Booking ID</td>
+        <td>Cab No</td>
+        <td>Driver Name</td>
+        <td>Gst</td>
+        <td>Fare</td>
+        <td>Total Fare</td>
+        <td>Booking Date</td>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.FromLocation</td>
+            <td>@item.ToLocation</td>
+            <td>@item.BookingId</td>
+            <td>@item.CabNo</td>
+            <td>@item.DriverName</td>
+            <td>@item.Fareperkm</td>
+            <td>@item.Gst</td>
+            <td>@item.TotalFare</td>
+            <td>@item.BookingDate</td>
+        </tr>
+    }
+</table>
