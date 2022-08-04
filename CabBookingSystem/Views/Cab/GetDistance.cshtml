@@ -10,23 +10,34 @@
         font-size:40px;
         text-align:center;
         color:darkorchid;
+        margin-bottom:2em;
        
     }
    #details{
        font-size:18px;
        font-weight:bold;
+       margin-top:auto;
+       
+       
+
    }
    #table{
        font-size:18px;
        font-weight:bold;
+       margin-bottom:1em;
+       
    }
 </style>
 
-<h1>Available Cabs</h1>
+@*<h1>Available Cabs</h1><br  /*@>
 
 @*<p>
     <a asp-action="Create">Create New</a>
-</p>*@
+</p>*@<br/>
+<br  />
+<br  />
+<br  />
+<br  />
 <table class="table" id="table">
     <thead>
         <tr>
@@ -34,9 +45,9 @@
             @*<th>
                 @Html.DisplayNameFor(model => model.Cabname)
             </th>*@
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.Cabtype)
-            </th>
+            </th>*@
             @*<th>
                 @Html.DisplayNameFor(model => model.Fareperkm)
             </th>

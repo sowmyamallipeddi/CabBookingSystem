@@ -90,12 +90,31 @@ namespace CabBookingSystem.Repository
                              Fareperkm = c.Fareperkm,
                              Gst = b.Gst,
                              TotalFare = b.TotalFare,
-                             BookingDate = b.BookingDate
+                             BookingDate = b.BookingDate,
+                             Rating=b.Rating
 
 
                          };
             return result;
 
+        }
+
+        
+
+        public Booking GetBookingid(int id)
+        {
+            var t= _context.Booking.Where(v=>v.Bookingid==id).Include(u=>u.Distance).ThenInclude(k=>k.FromLocationNavigation).ThenInclude(k1=>k1.DistanceToLocationNavigation).FirstOrDefault();
+            return t;
+            //throw new System.NotImplementedException();
+        }
+
+        public void UpdateRating(int id, Booking booking)
+        {
+            
+                _context.Booking.Update(booking);
+                _context.SaveChanges();
+
+               
         }
     }
 }

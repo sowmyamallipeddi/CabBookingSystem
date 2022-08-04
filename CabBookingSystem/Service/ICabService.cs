@@ -13,5 +13,7 @@ namespace CabBookingSystem.Service
         Cab GetCabbyid(int id);
         ViewModel1 GetBooking(int id);
         IEnumerable<ViewModel2> GetBookinghistory(long mobileno);
+        void UpdateRating(int id,Booking booking);
+        Booking GetBookingid(int id);
     }
 }

@@ -51,5 +51,16 @@ namespace CabBookingSystem.Service
             return _irepo.GetBookinghistory(mobileno);
            // throw new System.NotImplementedException();
         }
+
+        public void UpdateRating(int id,Booking booking)
+        {
+            _irepo.UpdateRating(id,booking);
+            // throw new System.NotImplementedException();
+        }
+
+        public Booking GetBookingid(int id)
+        {
+           return _irepo.GetBookingid(id);
+        }
     }
 }

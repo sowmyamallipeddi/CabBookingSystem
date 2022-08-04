@@ -13,5 +13,6 @@ namespace CabBookingSystem.Models
         public double? Gst { get; set; }
         public decimal? TotalFare { get; set; }
         public DateTime? BookingDate { get; set; }
+        public double? Rating { get; set; }
     }
 }

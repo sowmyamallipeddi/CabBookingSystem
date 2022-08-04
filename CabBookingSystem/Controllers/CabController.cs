@@ -28,12 +28,21 @@ namespace CabBookingSystem.Controllers
         public IActionResult GetDistance(Distance distance)
         {
             Distance result= _cs.GetDistance(distance.FromLocation,distance.ToLocation);
-            ViewBag.distance = result.Distanceinkm;
-            var cabs = _cs.GetCabs(distance.FromLocation);
-            TempData["distance"] =JsonConvert.SerializeObject(result);
+            try
+            {
+
+                ViewBag.distance = result.Distanceinkm;
+                var cabs = _cs.GetCabs(distance.FromLocation);
+                TempData["distance"] = JsonConvert.SerializeObject(result);
+                return View(cabs);
+            }
+            catch
+            {
+                return RedirectToPage("Error.cshtml");
+            }
             
 
-            return View(cabs);
+            //return View(cabs);
         }
         
         public IActionResult Confirmed(int bookingid)
@@ -59,6 +68,7 @@ namespace CabBookingSystem.Controllers
             b.DistanceId = distance.DistanceId;
             b.Fare = cab.Fareperkm;
             b.Gst = 18;
+            b.BookingDate = DateTime.Now;
             b.TotalFare =(decimal)(b.Fare*distance.Distanceinkm)+ (decimal)(0.18 *(b.Fare * distance.Distanceinkm));
             
             _cs.bookCab(b);
@@ -70,7 +80,28 @@ namespace CabBookingSystem.Controllers
         {
             var res = _cs.GetBookinghistory(long.Parse(HttpContext.Session.GetString("mobile")));
             return View(res);
+
         }
+
+        // [HttpPost]
+        public IActionResult UpdateRating(int Id)
+        {
+            var booking = _cs.GetBookingid(Id);
+            //booking.Rating = param2;
+            //_cs.UpdateRating(booking);
+
+            return View(booking);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateRating(int id,Booking booking)
+        {
+            _cs.UpdateRating(id,booking);
+            return RedirectToAction("GetBookingHistory");
+        }
+
+
+
 
     }
 }

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -25,7 +27,7 @@
     <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -41,21 +43,70 @@
 
             <nav id="navbar" class="navbar box-shadow navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#">About</a></li>
-                    <li><a class="nav-link scrollto" href="#">Contact</a></li>
-                    <li><a class="getstarted scrollto" href="#">Login</a></li>
-                    <li class="dropdown">
+                    
+                   
+                    @if(User.Identity.IsAuthenticated){
+                          
+                        <li><a class="nav-link scrollto" asp-controller="Cab" asp-action="Index">Book Trip</a></li>
+                         <li><a class="nav-link scrollto" asp-controller="Cab" asp-action="GetBookingHistory">Your Trips</a></li>
+                        <li><a class="getstarted scrollto" asp-controller="Customer" asp-action="Logout">Logout</a></li>
+                       
+                    }
+                    else
+                    {
+                        <li><a class="nav-link scrollto active"  asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a class="nav-link scrollto"  asp-controller="Home" asp-action="Privacy">About</a></li>
+                        
+                        <li><a class="getstarted scrollto" asp-controller="Customer" asp-action="Login">Login</a></li>
+                         <li class="dropdown">
                         <a class="getstarted scrollto" href="#">Register<i class="bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">As Customer</a></li>
+                            <li><a asp-controller="Customer" asp-action="Register">As Customer</a></li>
                             <li><a href="#">As Driver</a></li>
                         </ul>
                     </li>
+                    }
+                   
+                   
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
-            
+            @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CabBookingSystem</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Register">Register</a>
+                        </li>
+                         @if(User.Identity.IsAuthenticated){
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Logout">Logout</a>
+
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Login">Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+            *@
 
         </div>
     </header><!-- End Header -->
@@ -115,3 +166,4 @@
 </body>
 
 </html>
+

@@ -3,13 +3,60 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+@*<h1>Index</h1*@>
+    <style>
+        body{
+            background-color:lightcyan;
+            
+        }
+        
+        select{
+            font-weight:light;
+            font-size:18px;
+        }
+        #details{
+             font-weight:bold;
+            font-size:18px;
+        }
+        
+        
+    </style>
+<section id="login" class="login align-items-center">
+    <div id="layoutAuthentication">
+        <main>
+            <div id="layoutAuthentication_content" class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            
+                            <div class="card-header"><h3 class="text-center font-weight-bold my-4">Search Destination</h3></div>
+                            <div class="card-body">
 
-<form asp-action="GetDistance">
+<form asp-action="GetDistance" id="details">
     
-  From Location<select asp-for="FromLocation" asp-items="@ViewBag.data"> </select>
+  From Location  <select asp-for="FromLocation" asp-items="@ViewBag.data"> </select><br /><br  />
      
-   To Location<select asp-for="ToLocation" asp-items="@ViewBag.data"> </select>
-    <input type="submit" />
+   To Location <select asp-for="ToLocation" asp-items="@ViewBag.data"> </select><br /><br  />
+    <input type="submit" class="btn btn-primary"/>
 </form>
+ </div>
+                            <div class="card-footer text-center py-3">
+                                <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</section>
+<div><br  />
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
 

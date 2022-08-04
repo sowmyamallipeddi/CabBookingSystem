@@ -2,7 +2,16 @@
 @{
     ViewData["Title"] = "Confirmed";
 }
+<br    />
+<br    />
+<br    />
+<br    />
+<br    />
+<br    />
 <style>
+    body{
+        background-color:lightcyan;
+    }
     h1{
         font-weight:bold;
         font-size:40px;
@@ -14,16 +23,30 @@
         font-family:'Times New Roman', Times, serif;
         font-size:25px;
         color:darkmagenta;
+        text-align:center;
 
     }
      #details{
        font-size:18px;
        font-weight:bold;
+       padding: 15px 30px 20px 40px;
+       text-align:center;
    }
 </style>
 
-<h1>Confirmed Information</h1><br /><br />
-<p>Your booking is confirmed</p>
+
+<h1>Confirmed Information</h1>
+@*<p>Your booking is confirmed</p>*@
+<section id="login" class="login align-items-center">
+    <div id="layoutAuthentication">
+        <main>
+            <div id="layoutAuthentication_content" class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            
+                            <div class="card-header"><h3 class="text-center font-weight-dark my-4">Your Booking is Confirmed</h3></div>
+                            <div class="card-body">
 <table class="table" id="details">
     <tr>
         <td>
@@ -42,5 +65,23 @@
     </tr>
    
 </table>
+
+ </div>
+                            <div class="card-footer text-center py-3">
+                                @*<div class="small"><a href="register.html">Need an account? Sign up!</a></div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</section>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
 

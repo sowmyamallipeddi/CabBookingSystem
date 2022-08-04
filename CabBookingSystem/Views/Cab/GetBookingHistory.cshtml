@@ -7,13 +7,18 @@
         font-family:'Times New Roman', Times, serif;
         color:darkmagenta;
         font-size:40px;
+        font-weight:bold;
 
     }
 </style>
+<br   />
+<br   />
+<br   />
+<br   />
+<br   />
+<h1>Your Trips</h1>
 
-<h1>GetBookingHistory</h1>
-
-<table class="table">
+<table class="table" border="1">
     <tr>
         <td>From Location</td>
         <td>To Location</td>
@@ -24,9 +29,11 @@
         <td>Fare</td>
         <td>Total Fare</td>
         <td>Booking Date</td>
+        <td>Rating</td>
     </tr>
     @foreach(var item in Model)
     {
+        @*<form method="post" asp-action="UpdateRating" asp-route-param2="@item.Rating" asp-route-param1="@item.BookingId">*@
         <tr>
             <td>@item.FromLocation</td>
             <td>@item.ToLocation</td>
@@ -37,6 +44,10 @@
             <td>@item.Gst</td>
             <td>@item.TotalFare</td>
             <td>@item.BookingDate</td>
+            <td>@item.Rating</td>
+           @*<td>@Html.EditorFor(modelitem=>item.Rating)</td>*@
+           <td><a asp-action="UpdateRating" asp-route-id="@item.BookingId">Update Rating</a></td>
         </tr>
+        @*</form>*@
     }
 </table>
